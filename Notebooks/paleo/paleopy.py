@@ -126,13 +126,13 @@ def dRdx(x_bins, sigma, m, rock='Zab'):
         dRdx += ratio_nuclei[nuc]*dRdx_nuc*x_width
     return dRdx*1e6*365
 
-nu_list = ['DSNB', 'atm', 'hep', '8B', '15O', '17F', '13N', 'pep']
+nu_list = ['DSNB', 'atm', 'hep', '8B', '15O', '17F', '13N', 'pep','pp','7Be-384','7Be-861']
 
 def dRdx_nu(x_bins, E, rock='Zab', components=False, gaussian=False):
     x_width = np.diff(x_bins)
     x = x_bins[:-1] + x_width/2
     "Returns in events/kg/Myr"
-    nu_list = ['DSNB', 'atm', 'hep', '8B', '15O', '17F', '13N', 'pep']
+    nu_list = ['DSNB', 'atm', 'hep', '8B', '15O', '17F', '13N', 'pep','pp','7Be-384','7Be-861']
     if rock == 'Zab':
         nuclei = nuclei_Zab
         abun = Zab_abun
