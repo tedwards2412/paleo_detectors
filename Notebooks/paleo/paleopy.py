@@ -96,8 +96,10 @@ Etox_nuclei_Syl = dict(zip(nuclei_Syl, Etox_Syl))
 xtoE_nuclei_Syl = dict(zip(nuclei_Syl, xtoE_Syl))
 ratio_nuclei_Syl = dict(zip(nuclei_Syl, Syl_abun))
 
-def dRdx(x, sigma, m, rock='Zab'):
-    "Returns in events/nm/kg/Myr"
+def dRdx(x_bins, sigma, m, rock='Zab'):
+    x_width = np.diff(x_bins)
+    x = x_bins[:-1] + x_width/2
+    "Returns in events/kg/Myr"
     if rock == 'Zab':
         nuclei = nuclei_Zab
         abun = Zab_abun
@@ -121,13 +123,15 @@ def dRdx(x, sigma, m, rock='Zab'):
         Etemp = xtoE_nuclei[nuc](x)
         dRdx_nuc = (DMU.dRdE_standard(Etemp, p[i], n[i], m, sigma)
                                                     *dEdx_nuclei[nuc](x))
-        dRdx += ratio_nuclei[nuc]*dRdx_nuc
+        dRdx += ratio_nuclei[nuc]*dRdx_nuc*x_width
     return dRdx*1e6*365
 
 nu_list = ['DSNB', 'atm', 'hep', '8B', '15O', '17F', '13N', 'pep']
 
-def dRdx_nu(x, E, rock='Zab', components=False, gaussian=False):
-    "Returns in events/nm/kg/Myr"
+def dRdx_nu(x_bins, E, rock='Zab', components=False, gaussian=False):
+    x_width = np.diff(x_bins)
+    x = x_bins[:-1] + x_width/2
+    "Returns in events/kg/Myr"
     nu_list = ['DSNB', 'atm', 'hep', '8B', '15O', '17F', '13N', 'pep']
     if rock == 'Zab':
         nuclei = nuclei_Zab
@@ -157,7 +161,7 @@ def dRdx_nu(x, E, rock='Zab', components=False, gaussian=False):
                 dRdx_nuc = (np.vectorize(DMU.dRdE_CEvNS)(E, p[i], n[i], flux_name=nu_source)
                                                             *dEdx_nuclei[nuc](xtemp))
                 temp_interp = interp1d(xtemp, dRdx_nuc, fill_value='extrapolate')
-                dRdx_temp += ratio_nuclei[nuc]*temp_interp(x)
+                dRdx_temp += ratio_nuclei[nuc]*temp_interp(x)*x_width
 #             dRdx[j,:] += dRdx_temp*1e6*365
             if gaussian:
                 dRdx.append(gaussian_filter1d(dRdx_temp*1e6*365,1)+1e-20)
@@ -170,7 +174,7 @@ def dRdx_nu(x, E, rock='Zab', components=False, gaussian=False):
             dRdx_nuc = (np.vectorize(DMU.dRdE_CEvNS)(E, p[i], n[i], flux_name='all')
                                                         *dEdx_nuclei[nuc](xtemp))
             temp_interp = interp1d(xtemp, dRdx_nuc, fill_value='extrapolate')
-            dRdx += ratio_nuclei[nuc]*temp_interp(x)*1e6*365
+            dRdx += ratio_nuclei[nuc]*temp_interp(x)*x_width*1e6*365
         if gaussian:
             dRdx = gaussian_filter1d(dRdx*1e6*365,1)+1e-20
     return dRdx
