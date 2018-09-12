@@ -178,3 +178,41 @@ def dRdx_nu(x_bins, E, rock='Zab', components=False, gaussian=False):
         if gaussian:
             dRdx = gaussian_filter1d(dRdx*1e6*365,1)+1e-20
     return dRdx
+
+
+def fission_bkg(x_bins, M, T, rock='Zab', gaussian=False):
+    Syl_fiss_x, Syl_fiss_rate = np.loadtxt('../Data/Sylvanite_fission.dat', usecols=(0,1), unpack=True)
+    Zab_fiss_x, Zab_fiss_rate = np.loadtxt('../Data/Zabuyelite_fission.dat', usecols=(0,1), unpack=True)
+
+    Syl_fiss_x *= 10 # Converts angstrom to nm
+    Zab_fiss_x *= 10 # Converts angstrom to nm
+
+    Syl_fiss_rate /= 10 # Converts angstrom^-1 to nm^-1
+    Zab_fiss_rate /= 10 # Converts angstrom^-1 to nm^-1
+    """M is in kg, T is in years. Returns events/kg/Myr"""
+    x_width = np.diff(x_bins)
+    x = x_bins[:-1] + x_width/2
+    if rock == 'Zab':
+        fiss_x = Zab_fiss_x
+        fiss_rate = Zab_fiss_rate
+    elif rock == 'Syl':
+        fiss_x = Syl_fiss_x
+        fiss_rate = Syl_fiss_rate
+
+    T_half_238 = 4.47e9
+    T_fission_238 = 8.4e15
+    A = 6.022140857e23
+    fission_norm =  lambda n238_permass, E: (n238_permass*
+                (1-np.exp(-E*np.log(2)/T_half_238))*(T_half_238/T_fission_238))
+
+    molmass = 100 # FIXME: change in the future to accurate numbers
+    n238_permass = lambda m: 1e-9*m*1e3*A/molmass
+    fis = fission_norm(n238_permass(M),T)
+    fiss_rate *= fis
+    bkgfis_interp = interp1d(fiss_x, fiss_rate, bounds_error=False,
+                                            fill_value='extrapolate')
+    if gaussian:
+        bkgfis = gaussian_filter1d(bkgfis_interp(x)*x_width,1)
+    else:
+        bkgfis = bkgfis_interp(x)*x_width
+    return bkgfis
