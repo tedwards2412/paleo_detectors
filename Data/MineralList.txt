@@ -1,0 +1,12 @@
+[Zabuyelite]
+
+shortname = Zab
+N_nuclei = 3
+
+nuclei = Li, C, O
+abundances = 0.189, 0.162, 0.649
+N_p = 3, 6, 8
+N_N = 4, 6, 8
+
+
+[Sylvanite]
