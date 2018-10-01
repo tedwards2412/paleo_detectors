@@ -37,4 +37,9 @@ U_frac = 0.1e-9
 
 [Gypsum]
 shortname = Gyp
-nuclei
+nuclei = Ca, H, S, O
+stoich = 1, 4, 1, 6
+N_p = 20, 1, 16, 8
+N_n = 20, 0, 16, 8
+
+U_frac = 0.01e-9
