@@ -34,7 +34,3 @@ N_p = 12, 26, 14, 8
 N_n = 12.3, 29.85, 14, 8
 
 U_frac = 0.1e-9
-
-[Gypsum]
-shortname = Gyp
-nuclei

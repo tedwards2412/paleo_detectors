@@ -1,30 +1,3 @@
- ==================================================================
-              Calculation using SRIM-2006 
-              SRIM version ---> SRIM-2008.04
-              Calc. date   ---> September 21, 2018 
- ==================================================================
-
- Disk File Name = SRIM Outputs\Iron in Olivine
-
- Ion = Iron [26] , Mass = 55.935 amu
-
- Target Density =  3.3200E+00 g/cm3 = 9.1291E+22 atoms/cm3
- ======= Target  Composition ========
-    Atom   Atom   Atomic    Mass     
-    Name   Numb   Percent   Percent  
-    ----   ----   -------   -------  
-     Mg     12    022.86    025.37   
-     Fe     26    005.71    014.56   
-     Si     14    014.29    018.33   
-      O      8    057.14    041.74   
- ====================================
- Bragg Correction = 0.00%
- Stopping Units =  keV / micron   
- See bottom of Table for other Stopping units 
-
-   Ion        dE/dx      dE/dx     Projected  Longitudinal   Lateral
-  Energy      Elec.      Nuclear     Range     Straggling   Straggling
------------  ---------- ---------- ----------  ----------  ----------
 9.99999 eV    2.764E+00  5.102E+01       3 A         1 A         1 A   
 10.9999 eV    2.899E+00  5.417E+01       3 A         2 A         1 A   
 11.9999 eV    3.028E+00  5.719E+01       3 A         2 A         1 A   
@@ -182,16 +155,3 @@
    8.00 MeV   4.844E+03  1.262E+02    2.99 um     2521 A      3118 A   
    9.00 MeV   5.261E+03  1.154E+02    3.18 um     2566 A      3198 A   
   10.00 MeV   5.642E+03  1.064E+02    3.36 um     2603 A      3266 A   
------------------------------------------------------------
- Multiply Stopping by        for Stopping Units
- -------------------        ------------------
-  1.0000E-01                 eV / Angstrom 
-  1.0000E+00                keV / micron   
-  1.0000E+00                MeV / mm       
-  3.0121E-03                keV / (ug/cm2) 
-  3.0121E-03                MeV / (mg/cm2) 
-  3.0121E+00                keV / (mg/cm2) 
-  1.0954E-01                 eV / (1E15 atoms/cm2)
-  2.3713E-04                L.S.S. reduced units
- ==================================================================
- (C) 1984,1989,1992,1998,2008 by J.P. Biersack and J.F. Ziegler
