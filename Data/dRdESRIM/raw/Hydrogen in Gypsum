@@ -1,30 +1,3 @@
- ==================================================================
-              Calculation using SRIM-2006 
-              SRIM version ---> SRIM-2008.04
-              Calc. date   ---> October 01, 2018 
- ==================================================================
-
- Disk File Name = SRIM Outputs\Hydrogen in Gypsum
-
- Ion = Hydrogen [1] , Mass = 1.008 amu
-
- Target Density =  2.3000E+00 g/cm3 = 9.6515E+22 atoms/cm3
- ======= Target  Composition ========
-    Atom   Atom   Atomic    Mass     
-    Name   Numb   Percent   Percent  
-    ----   ----   -------   -------  
-     Ca     20    008.34    023.29   
-      H      1    033.32    002.34   
-      S     16    008.33    018.61   
-      O      8    050.01    055.75   
- ====================================
- Bragg Correction = -43.54%
- Stopping Units =  keV / micron   
- See bottom of Table for other Stopping units 
-
-   Ion        dE/dx      dE/dx     Projected  Longitudinal   Lateral
-  Energy      Elec.      Nuclear     Range     Straggling   Straggling
------------  ---------- ---------- ----------  ----------  ----------
 9.99999 eV    1.379E+00  3.787E+00       5 A         8 A         6 A   
 10.9999 eV    1.446E+00  3.885E+00       5 A         8 A         6 A   
 11.9999 eV    1.511E+00  3.974E+00       5 A         9 A         6 A   
@@ -182,16 +155,3 @@
    8.00 MeV   1.059E+01  5.626E-03  443.67 um    19.55 um    18.32 um  
    9.00 MeV   9.660E+00  5.065E-03  542.20 um    24.44 um    22.05 um  
   10.00 MeV   8.892E+00  4.610E-03  649.74 um    29.24 um    26.09 um  
------------------------------------------------------------
- Multiply Stopping by        for Stopping Units
- -------------------        ------------------
-  1.0000E-01                 eV / Angstrom 
-  1.0000E+00                keV / micron   
-  1.0000E+00                MeV / mm       
-  4.3480E-03                keV / (ug/cm2) 
-  4.3480E-03                MeV / (mg/cm2) 
-  4.3480E+00                keV / (mg/cm2) 
-  1.0361E-01                 eV / (1E15 atoms/cm2)
-  5.5583E-02                L.S.S. reduced units
- ==================================================================
- (C) 1984,1989,1992,1998,2008 by J.P. Biersack and J.F. Ziegler

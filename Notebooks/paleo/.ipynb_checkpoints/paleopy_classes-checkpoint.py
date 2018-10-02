@@ -74,6 +74,8 @@ class Mineral:
         self.Etox_interp = []
         self.xtoE_interp = []
         
+        self.Etox_interp_Th = None
+        
         if (self.shortname == "Zab"):
             self.loadSRIMdata(modifier="CC2338")
         elif (self.shortname == "Syl"):
@@ -126,6 +128,22 @@ class Mineral:
             self.Etox_interp.append(interp1d(E, x, bounds_error=False, fill_value='extrapolate'))
             self.xtoE_interp.append(interp1d(x, E, bounds_error=False, fill_value='extrapolate'))
             self.dEdx_interp.append(interp1d(x, dEdx, bounds_error=False, fill_value='extrapolate'))    
+    
+        #Load in the Thorium track lengths...
+        #Construct the SRIM output filename
+        infile = SRIMfolder + "Th-" + self.shortname
+        if not(modifier == None):
+            infile += "-" + modifier
+        infile += ".txt"
+        
+        E, dEedx, dEndx = np.loadtxt(infile, usecols=(0,1,2), unpack=True)
+        dEdx = dEedx + dEndx    #Add electronic stopping to nuclear stopping
+        dEdx *= 1.e-3           # Convert keV/micro_m to keV/nm
+        x = cumtrapz(1./dEdx,x=E, initial=0)    #Calculate integrated track lengths
+        self.Etox_interp_Th = interp1d(E, x, bounds_error=False, fill_value='extrapolate')
+    
+    
+
     
     #--------------------------------
     def showSRIM(self):
@@ -249,11 +267,11 @@ class Mineral:
             bkgfis = self.fissbkg_interp(x)
         return bkgfis*N
     
-    #def xT_singlealpha(self):
-    #    E_Thorium = 72. #keV
-    #    return self.Etox_interp[i](E_thorium)
+    def xT_Thorium(self):
+        E_Thorium = 72. #keV
+        return self.Etox_interp_Th(E_Thorium)
     
-    def norm_singlealpha(self, T):
+    def norm_Thorium(self, T):
         #T is in years. Returns events/kg/Myr
         T_half_238 = 4.468e9
         T_half_234 = 2.455e5
@@ -261,8 +279,8 @@ class Mineral:
         lam_238 = np.log(2)/T_half_238
         lam_234 = np.log(2)/T_half_234
         
-        print("lambda_238 [yr^-1]:", lam_238)
-        print("lambda_234 [yr^-1]:", lam_234)
+        #print("lambda_238 [yr^-1]:", lam_238)
+        #print("lambda_234 [yr^-1]:", lam_234)
         
         N_A = 6.022140857e23
         
