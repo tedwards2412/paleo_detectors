@@ -37,10 +37,11 @@ def GetBackground(mineral, sigma):
             xmean = 0.5*(x_bins[i] + x_bins[i+1])
             x1 = xmean - 5.0*sigma
             x2 = xmean + 5.0*sigma
+            x1 = np.clip(x1, 0.1, 1e5)
             #print(xmean, x1, x2)
             integ = lambda y: dRdx_interp(y)*window(y, x_bins[i], x_bins[i+1], sigma)
             #print(integ(xmean))
-            N_events_ind[i] = quad(integ, x1, x2, epsrel=1e-3)[0] + 1e-30
+            N_events_ind[i] = quad(integ, x1, x2, epsrel=1e-4)[0] + 1e-30
         
         Nevents_BG.append(N_events_ind)
         
@@ -77,10 +78,14 @@ def GetSignal(mineral, sigma, m_DM, xsec):
         xmean = 0.5*(x_bins[i] + x_bins[i+1])
         x1 = xmean - 5.0*sigma
         x2 = xmean + 5.0*sigma
-
+        x1 = np.clip(x1, 0.1, 1e5)
+        #x1 = x_bins[i]
+        #x2 = x_bins[i+1]
         integ = lambda y: dRdx_interp(y)*window(y, x_bins[i], x_bins[i+1], sigma)
 
-        Nevents_sig[i] = quad(integ, x1, x2,epsrel=1e-3)[0]
+        
+        
+        Nevents_sig[i] = quad(integ, x1, x2,epsrel=1e-4)[0]
     
     #Nevents_sig = np.array([quad(dRdx_interp, x_bins[i], x_bins[i+1])[0] for i in range(N_bins)])
     
