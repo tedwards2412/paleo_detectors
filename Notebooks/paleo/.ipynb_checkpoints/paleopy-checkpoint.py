@@ -11,14 +11,21 @@ def calcBins(sigma):
     x_bins = np.arange(x0, 1000, sigma)
     return x_bins
     
-def GetBackground(mineral, sigma):
+def calcBins_1nm():
+    x0 = 0.5
+    x_bins = np.arange(x0, 100.5)
+    x_bins = np.append(x_bins, np.arange(100.5, 1001,10))
+    return x_bins
+    
+def GetBackground(mineral, sigma, x_bins=None):
     x0 = sigma/2.0
     
     x_bins_all = np.logspace(-1, 3,200)
     x_width_all = np.diff(x_bins_all)
     x_c_all = x_bins_all[:-1] + x_width_all/2
 
-    x_bins = calcBins(sigma/2)
+    if (x_bins is None):
+        x_bins = calcBins(sigma)
     N_bins = len(x_bins) - 1
     
     Nevents_BG = []
@@ -58,14 +65,15 @@ def GetBackground(mineral, sigma):
     
     return Nevents_BG
 
-def GetSignal(mineral, sigma, m_DM, xsec):
+def GetSignal(mineral, sigma, m_DM, xsec, x_bins=None):
     x0 = sigma/2.0
     
     x_bins_all = np.logspace(-1, 3,200)
     x_width_all = np.diff(x_bins_all)
     x_c_all = x_bins_all[:-1] + x_width_all/2
     
-    x_bins = calcBins(sigma/2)
+    if (x_bins is None):
+        x_bins = calcBins(sigma)
     N_bins = len(x_bins) - 1
     
     dRdx_sig = mineral.dRdx(x_bins_all, xsec, m_DM, gaussian=False)
