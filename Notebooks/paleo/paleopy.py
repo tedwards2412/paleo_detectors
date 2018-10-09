@@ -18,7 +18,7 @@ def GetBackground(mineral, sigma):
     x_width_all = np.diff(x_bins_all)
     x_c_all = x_bins_all[:-1] + x_width_all/2
 
-    x_bins = calcBins(sigma/2)
+    x_bins = calcBins(sigma)
     N_bins = len(x_bins) - 1
     
     Nevents_BG = []
@@ -65,7 +65,7 @@ def GetSignal(mineral, sigma, m_DM, xsec):
     x_width_all = np.diff(x_bins_all)
     x_c_all = x_bins_all[:-1] + x_width_all/2
     
-    x_bins = calcBins(sigma/2)
+    x_bins = calcBins(sigma)
     N_bins = len(x_bins) - 1
     
     dRdx_sig = mineral.dRdx(x_bins_all, xsec, m_DM, gaussian=False)
