@@ -229,7 +229,7 @@ class Mineral:
     
     def loadFissionBkg(self):
         
-        if (self.name == "Sinjarite"):
+        if (self.name == "Sinjarite" or self.name == "Phlogopite"):
             fiss_x, fiss_rate, fiss_H =  np.loadtxt("../Data/" + self.name + "_fission.dat", usecols=(0,1,2), unpack=True)
             fiss_rate -= fiss_H #Hydrogen tracks can't be seen, so let's subtract them
         else:
