@@ -259,7 +259,7 @@ class Mineral:
         #Read in the column headings so you know which element is which
         f = open(fname)
         head = f.readlines()[1]
-        columns = head.split(",")[1:]
+        columns = head.split(",")
         columns = [c.strip() for c in columns]
         ncols = len(columns)
         f.close()
