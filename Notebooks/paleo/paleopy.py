@@ -8,7 +8,7 @@ def window(x, x_a, x_b, sigma):
 
 def calcBins(sigma):
     x0 = sigma/2.0
-    x_bins = np.arange(x0, 1000, sigma)
+    x_bins = np.logspace(np.log10(x0), 3, 100)
     return x_bins
     
 def calcBins_1nm():
