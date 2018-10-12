@@ -82,8 +82,12 @@ class Mineral:
             self.loadSRIMdata(modifier="CC1")
         else:
             self.loadSRIMdata()
-            
-        self.loadFissionBkg()
+        
+        self.NeutronBkg_interp = []
+        
+        self.loadNeutronBkg()
+        
+        #self.loadFissionBkg()
         
         #Do we need these cumbersome dictionaries...
         self.dEdx_nuclei = dict(zip(self.nuclei, self.dEdx_interp))
@@ -173,7 +177,7 @@ class Mineral:
     def dRdx(self, x_bins, sigma, m, gaussian=False):
         x_width = np.diff(x_bins)
         x = x_bins[:-1] + x_width/2
-        #Returns in events/kg/Myr
+        #Returns in events/kg/Myr/nm
 
         
         dRdx = np.zeros_like(x)
@@ -192,7 +196,7 @@ class Mineral:
     def dRdx_nu(self,x_bins, components=False, gaussian=False):
         x_width = np.diff(x_bins)
         x = x_bins[:-1] + x_width/2
-        #Returns in events/kg/Myr
+        #Returns in events/kg/Myr/nm
         nu_list = ['DSNB', 'atm', 'hep', '8B', '15O', '17F', '13N', 'pep','pp','7Be-384','7Be-861']
     
         E_list = np.logspace(-2, 3, 1000) # keV
@@ -227,46 +231,6 @@ class Mineral:
                 
         return dRdx
     
-    def loadFissionBkg(self):
-        
-        if (self.name == "Sinjarite" or self.name == "Phlogopite"):
-            fiss_x, fiss_rate, fiss_H =  np.loadtxt("../Data/" + self.name + "_fission.dat", usecols=(0,1,2), unpack=True)
-            fiss_rate -= fiss_H #Hydrogen tracks can't be seen, so let's subtract them
-        else:
-            fiss_x, fiss_rate = np.loadtxt("../Data/" + self.name + "_fission.dat", usecols=(0,1), unpack=True)
-        
-        
-        fiss_x *= 0.1 # Converts angstrom to nm
-        fiss_rate *= 10 # Converts angstrom^-1 to nm^-1
-    
-        self.fissbkg_interp = interp1d(fiss_x, fiss_rate, bounds_error=False,fill_value='extrapolate')
-    
-    def fission_bkg(self, x_bins, T, gaussian=False):
-        #T is in years. Returns events/kg/Myr
-        #Note that the fission bkg is *not* linear in T, but we divide through
-        #by T at the end to give everything the same units...
-        x_width = np.diff(x_bins)
-        x = x_bins[:-1] + x_width/2
-        
-        T_half_238 = 4.468e9
-        T_fission_238 = 8.4e15
-        N_A = 6.022140857e23
-        
-        #fission_norm =  lambda n238_permass, E: (n238_permass*
-        #       (1-np.exp(-E*np.log(2)/T_half_238))*(T_half_238/T_fission_238))
-
-        #n238_permass = lambda m: 1e-9*m*1e3*A/molmass
-        n238_permass = self.U_frac*N_A*1e3/self.molarmass #Number of U238 atoms *per kg*
-        fission_norm = (1-np.exp(-T*np.log(2)/T_half_238))*(T_half_238/T_fission_238)
-        N = fission_norm*n238_permass/(T*1e-6) #per Myr
-        
-
-        if (gaussian):
-            bkgfis = gaussian_filter1d(self.fissbkg_interp(x),1)
-        else:
-            bkgfis = self.fissbkg_interp(x)
-        return bkgfis*N
-    
     def xT_Thorium(self):
         E_Thorium = 72. #keV
         return self.Etox_interp_Th(E_Thorium)
@@ -288,4 +252,45 @@ class Mineral:
         Nalpha = n238_permass*(lam_238/(lam_234 - lam_238))*(np.exp(-lam_238*T) - np.exp(-lam_234*T))
         return Nalpha/(T*1e-6)
         
+    def loadNeutronBkg(self):
         
+        fname = "../Data/" + self.name + "_ninduced_wan.dat"
+        
+        #Read in the column headings so you know which element is which
+        f = open(fname)
+        head = f.readlines()[1]
+        columns = head.split(",")[1:]
+        columns = [c.strip() for c in columns]
+        ncols = len(columns)
+        f.close()
+        
+        data = np.loadtxt(fname)
+        E_list = data[:,0]
+        
+        self.NeutronBkg_interp = []
+        
+        for i, nuc in enumerate(self.nuclei):
+            dRdE_list = 0.0*E_list
+            #How many characters is the length of the element name you're looking for
+            nchars = len(nuc)
+            for j in range(ncols):
+                #Check if this is the correct element
+                if (columns[j][0:nchars] == nuc):
+                    dRdE_list += data[:,j]
+            
+            (self.NeutronBkg_interp).append(interp1d(E_list, dRdE_list,bounds_error=False,fill_value=0.0))
+            
+    def dRdx_neutrons(self, x_bins):
+        x_width = np.diff(x_bins)
+        x = x_bins[:-1] + x_width/2
+        #Returns in events/kg/Myr/nm
+        
+        
+        dRdx = np.zeros_like(x)
+        for i, nuc in enumerate(self.nuclei):
+            if (nuc != "H"):
+                E_list = self.xtoE_nuclei[nuc](x) 
+                dRdx_nuc = self.NeutronBkg_interp[i](E_list)*self.dEdx_nuclei[nuc](x)
+                dRdx += dRdx_nuc #Isotope fractions are already included in the tabulated neutron spectra
+                
+        return dRdx*self.U_frac/0.1e-9 #Tables were generated for a Uranium fraction of 0.1 ppb

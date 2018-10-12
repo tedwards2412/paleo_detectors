@@ -52,3 +52,23 @@ N_p = 19, 12, 13, 14, 1, 8, 9
 N_n = 20, 12.3, 14, 14, 0, 8, 10
 
 U_frac = 0.01e-9
+
+[Halite]
+shortname = Hal
+nuclei = Na, Cl
+stoich = 1, 1
+N_p = 11, 17
+N_n = 12, 18.45
+
+U_frac = 0.01e-9
+
+[Nchwaningite]
+shortname = Nchw
+nuclei = Mn, Si, O, H
+stoich = 2, 1, 6, 4
+N_p = 25, 14, 8, 1
+N_n = 30, 14, 8, 0
+
+U_frac = 0.1e-9
+
+

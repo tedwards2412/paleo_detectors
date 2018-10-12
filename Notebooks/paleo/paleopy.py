@@ -30,10 +30,10 @@ def GetBackground(mineral, sigma, x_bins=None):
     
     Nevents_BG = []
     
-    T_exp = 1e7 #Set exposure time for radioactive backgrounds
+    T_exp = 1e7 #Set exposure time for the Thorium background
     
     dRdx_BG = mineral.dRdx_nu(x_bins_all, components=True, gaussian=False)
-    dRdx_BG.append(mineral.fission_bkg(x_bins_all, T=T_exp, gaussian=False))
+    dRdx_BG.append(mineral.dRdx_neutrons(x_bins_all))
     
     for dRdx in dRdx_BG:
         #dRdx_smooth = gaussian_filter1d(dRdx, sigma, mode='constant',cval = 1e-30)
