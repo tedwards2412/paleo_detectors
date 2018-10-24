@@ -184,8 +184,8 @@ class Mineral:
         for i, nuc in enumerate(self.nuclei):
             if (nuc != "H"):
                 Etemp = self.xtoE_nuclei[nuc](x)
-                dRdx_nuc = (DMU.dRdE_standard(Etemp, self.N_p[i], self.N_n[i], m, sigma)
-                                                    *self.dEdx_nuclei[nuc](x))
+                dRdx_nuc = (DMU.dRdE_standard(Etemp, self.N_p[i], self.N_n[i], m, sigma, \
+                                        vlag=248.0, sigmav=166.0, vesc=550.0)*self.dEdx_nuclei[nuc](x))
                 dRdx += self.ratio_nuclei[nuc]*dRdx_nuc
             
         if gaussian:
