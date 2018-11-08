@@ -63,7 +63,7 @@ class Mineral:
             raise ValueError("Number of N_n entries doesn't match number of nuclei for mineral <" + self.name + ">...")
         
         self.shortname = data["shortname"]
-        self.U_frac = float(data["U_frac"])
+        self.U_frac = float(data["U_frac"]) #Uranium fraction by weight
         
         #Calculate some derived stuff
         self.molarmass = np.sum(self.stoich*(self.N_p + self.N_n))
@@ -248,7 +248,8 @@ class Mineral:
         
         N_A = 6.022140857e23
         
-        n238_permass = self.U_frac*N_A*1e3/self.molarmass #Number of U238 atoms *per kg*
+
+        n238_permass = self.U_frac*N_A*1e3/238.0 #Number of U238 atoms *per kg*
         Nalpha = n238_permass*(lam_238/(lam_234 - lam_238))*(np.exp(-lam_238*T) - np.exp(-lam_234*T))
         return Nalpha/(T*1e-6)
         
