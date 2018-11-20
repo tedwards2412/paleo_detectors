@@ -250,7 +250,9 @@ class Mineral:
         
 
         n238_permass = self.U_frac*N_A*1e3/238.0 #Number of U238 atoms *per kg*
+        print("U-238 per kg (1e9):", 1e-9*n238_permass*(1-np.exp(-lam_238*1e9)))
         Nalpha = n238_permass*(lam_238/(lam_234 - lam_238))*(np.exp(-lam_238*T) - np.exp(-lam_234*T))
+        print("Number of single alpha: (1e9):", Nalpha*1e-9)
         return Nalpha/(T*1e-6)
         
     def loadNeutronBkg(self):
