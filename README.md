@@ -3,7 +3,7 @@
 
 ### Notebooks
 
-* [`Notebooks/PlotSpectra.ipynb`](Notebooks/PlotSpectra.ipynb) - testing the paleopy classes (loading in minerals and displaying data), the plotting the relevant track length spectra
+*  [`Notebooks/PlotSpectra.ipynb`](Notebooks/PlotSpectra.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/tedwards2412/paleo_detectors/master?filepath=Notebooks%2FPlotSpectra.ipynb) - testing the paleopy classes (loading in minerals and displaying data), the plotting the relevant track length spectra. 
 * [`Notebooks/FullAnalysis.ipynb`](Notebooks/FullAnalysis.ipynb) - generating SwordFish objects, then calculating and plotting Information Flux, Upper Limits and Discovery reach for different materials. This way, we only have to initialise the SwordFish objects once.
 
 ### SRIM data
