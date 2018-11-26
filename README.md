@@ -9,9 +9,9 @@ Code for calculating track spectra in paleo-detectors and for reproducing the re
 
 More information about paleo-detectors can be found in [arXiv:1806.05991](http://arxiv.org/abs/1806.05991) and [arXiv:1811.06844](http://arxiv.org/abs/1811.06844).
 
-**Authors:** Bradley J Kavanagh, Tom D P Edwards.
+**Authors:** Tom D P Edwards, Bradley J Kavanagh.
 
-For questions, comments or bug reports, please contact Bradley J Kavanagh (bradkav@gmail.com).
+Please let get in touch with questions, comments or bug-reports.
 
 ### Paleopy
 
