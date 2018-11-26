@@ -2,12 +2,12 @@
 
 *Is it possible to make a Dark Matter detection with a paleo-detector?*
 
-[![DOI](https://zenodo.org/badge/142072044.svg)](https://zenodo.org/badge/latestdoi/142072044) [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/tedwards2412/paleo_detectors/master?filepath=Notebooks%2FPlotSpectra.ipynb) [![DOI](https://zenodo.org/badge/142072044.svg)](https://zenodo.org/badge/latestdoi/142072044)  [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
 
 
 Code for calculating track spectra in paleo-detectors and exploring paleo-detector sensitivity to Dark Matter (DM). This code can be used to reproduce the results of arXiv:1811.XXXXX.
 
-More information about paleo-detectors can be found in [arXiv:1806.05991](http://arxiv.org/abs/1806.05991) and [arXiv:1811.06844](http://arxiv.org/abs/1811.06844).
+More information about paleo-detectors can also be found in [arXiv:1806.05991](http://arxiv.org/abs/1806.05991) and [arXiv:1811.06844](http://arxiv.org/abs/1811.06844).
 
 **Authors:** Tom D P Edwards, Bradley J Kavanagh.
 
@@ -19,7 +19,7 @@ Please let get in touch with questions, comments or bug-reports.
 
 ### Notebooks
 
-*  [`Notebooks/PlotSpectra.ipynb`](Notebooks/PlotSpectra.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/tedwards2412/paleo_detectors/master?filepath=Notebooks%2FPlotSpectra.ipynb) - testing the paleopy classes (loading in minerals and displaying data), then plotting the relevant track length spectra. Used for generating Fig. 1 of arXiv:1811.XXXXX.
+*  [`Notebooks/PlotSpectra.ipynb`](Notebooks/PlotSpectra.ipynb) - testing the paleopy classes (loading in minerals and displaying data), then plotting the relevant track length spectra. Used for generating Fig. 1 of arXiv:1811.XXXXX.
 * [`Notebooks/FullAnalysis.ipynb`](Notebooks/FullAnalysis.ipynb) - generating SwordFish objects, then calculating and plotting Information Flux, Upper Limits and Discovery reach for different materials. This way, we only have to initialise the SwordFish objects once. Used for generating Fig. 2 of arXiv:1811.XXXXX.
 * [`Notebooks/Systematics_Check.ipynb`](Notebooks/Systematics_Check.ipynb) - Used for generating Figs. 3 and 4 of arXiv:1811.XXXXX.
 * [`Notebooks/Mass_Reconstruction.ipynb`](Notebooks/Mass_Reconstruction.ipynb) -  Used for generating Fig. 5 of arXiv:1811.XXXXX.
