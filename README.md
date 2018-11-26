@@ -1,8 +1,8 @@
 # paleo_detectors
 
-*Is it possible to make a DM detection with a paleo detector?*
+*Is it possible to make a Dark Matter detection with a paleo-detector?*
 
-**ADD DOI BADGE** [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
+[![DOI](https://zenodo.org/badge/142072044.svg)](https://zenodo.org/badge/latestdoi/142072044) [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
 
 
 Code for calculating track spectra in paleo-detectors and for reproducing the results of arXiv:1811.XXXXX.
@@ -37,5 +37,4 @@ The code in this repo should run with Python3. Standard library requirements are
 
 Tables of projected upper limits and discovery reach are output to [`ES/limits`](ES/limits).
 
-### License
 
