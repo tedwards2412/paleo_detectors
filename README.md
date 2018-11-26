@@ -11,7 +11,7 @@ More information about paleo-detectors can also be found in [arXiv:1806.05991](h
 
 **Authors:** Tom D P Edwards, Bradley J Kavanagh.
 
-Please let get in touch with questions, comments or bug-reports.
+Please get in touch with any questions, comments or bug-reports.
 
 ### Paleopy
 
