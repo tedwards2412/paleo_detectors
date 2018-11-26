@@ -5,7 +5,7 @@
 [![DOI](https://zenodo.org/badge/142072044.svg)](https://zenodo.org/badge/latestdoi/142072044) [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
 
 
-Code for calculating track spectra in paleo-detectors and for reproducing the results of arXiv:1811.XXXXX.
+Code for calculating track spectra in paleo-detectors and exploring paleo-detector sensitivity to Dark Matter (DM). This code can be used to reproduce the results of arXiv:1811.XXXXX.
 
 More information about paleo-detectors can be found in [arXiv:1806.05991](http://arxiv.org/abs/1806.05991) and [arXiv:1811.06844](http://arxiv.org/abs/1811.06844).
 
