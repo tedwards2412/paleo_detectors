@@ -1,4 +1,4 @@
-# paleo_detectors
+# Paleo-Detectors
 
 *Is it possible to make a Dark Matter detection with a paleo-detector?*
 
