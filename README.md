@@ -24,6 +24,7 @@ For questions, comments or bug reports, please contact Bradley J Kavanagh (bradk
 * [`Notebooks/Systematics_Check.ipynb`](Notebooks/Systematics_Check.ipynb) - Used for generating Figs. 3 and 4 of arXiv:1811.XXXXX.
 * [`Notebooks/Mass_Reconstruction.ipynb`](Notebooks/Mass_Reconstruction.ipynb) -  Used for generating Fig. 5 of arXiv:1811.XXXXX.
 
+
 ### SRIM data
 
 SRIM data can be found in [`Data/dRdESRIM`](Data/dRdESRIM). There, you'll also find [`CleanSRIM.ipynb`](Data/dRdESRIM/CleanSRIM.ipynb), which lets you clean up the standard SRIM output files so that they can be read by the code (you just have to trim off the top and bottom junk from the files first, then the notebook can read them in and format them properly).
