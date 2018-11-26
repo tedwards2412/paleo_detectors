@@ -36,5 +36,3 @@ The code in this repo should run with Python3. Standard library requirements are
 ### Results
 
 Tables of projected upper limits and discovery reach are output to [`ES/limits`](ES/limits).
-
-
