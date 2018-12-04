@@ -1,8 +1,0 @@
-README.md
-setup.py
-paleopy/__init__.py
-paleopy/paleopy.py
-paleopy.egg-info/PKG-INFO
-paleopy.egg-info/SOURCES.txt
-paleopy.egg-info/dependency_links.txt
-paleopy.egg-info/top_level.txt

@@ -1,1 +1,0 @@
-from paleopy.paleopy import *
