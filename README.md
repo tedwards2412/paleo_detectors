@@ -8,13 +8,21 @@ Code for calculating track length spectra in paleo-detectors and exploring paleo
 
 More information about paleo-detectors can also be found in [arXiv:1806.05991](http://arxiv.org/abs/1806.05991) and [arXiv:1811.06844](http://arxiv.org/abs/1811.06844).
 
-**Authors:** Tom D P Edwards, Bradley J Kavanagh.
+**Authors:** Thomas D P Edwards, Bradley J Kavanagh.
 
 Please get in touch with any questions, comments or bug-reports.
 
 ### Overview: Paleopy
 
-The core of the code is in the [`paleopy`](Notebooks/paleo) module. Data for converting recoil energies to track lengths, along with tables of background distributions are loaded from [`Data/`](Data). This then allows you to calculate all the relevant track length distributions. The currently supported minerals are Nchwaningite, Sinjarite, Halite, Olivine, Gypsum and Phlogopite (see [`Data/MineralList.txt`](Data/MineralList.txt)).
+The core of the code is in the [`paleopy`](paleopy) module. Data for converting recoil energies to track lengths, along with tables of background distributions are loaded from [`Data/`](Data). This then allows you to calculate all the relevant track length distributions. The currently supported minerals are Nchwaningite, Sinjarite, Halite, Olivine, Gypsum and Phlogopite (see [`Data/MineralList.txt`](Data/MineralList.txt)).
+
+To install run:
+
+`
+git clone https://github.com/tedwards2412/paleo_detectors
+cd paleo_detectors
+python3 setup.py install
+`
 
 Check out [`Notebooks/PlotSpectra.ipynb`](Notebooks/PlotSpectra.ipynb) for an illustration of how to use the code: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/tedwards2412/paleo_detectors/master?filepath=Notebooks%2FPlotSpectra.ipynb)
 
