@@ -18,11 +18,9 @@ The core of the code is in the [`paleopy`](paleopy) module. Data for converting 
 
 To install run:
 
-`
-git clone https://github.com/tedwards2412/paleo_detectors
-cd paleo_detectors
-python3 setup.py install
-`
+    git clone https://github.com/tedwards2412/paleo_detectors
+    cd paleo_detectors
+    python3 setup.py install
 
 Check out [`Notebooks/PlotSpectra.ipynb`](Notebooks/PlotSpectra.ipynb) for an illustration of how to use the code: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/tedwards2412/paleo_detectors/master?filepath=Notebooks%2FPlotSpectra.ipynb)
 
