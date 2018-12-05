@@ -1,2 +1,3 @@
 pip install git+https://github.com/cweniger/swordfish
 pip install git+https://github.com/bradkav/WIMpy_NREFT
+pip install git+https://github.com/tedwards2412/paleopy
